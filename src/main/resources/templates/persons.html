@@ -7,12 +7,19 @@
 </head>
 <body>
 <h1>Manage persons</h1>
-<table>
-    <thead>
+<a th:href="@{/persons/new}">Add new person</a><br><br>
+
+<div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+</div>
+<table style="width: 80%; margin: auto" class="table table-bordered">
+    <thead class="table-dark">
     <tr>
         <th>First name</th>
         <th>Last name</th>
         <th>email</th>
+        <th>Enabled</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +28,11 @@
             <td th:text="${person.firstName}">John</td>
             <td th:text="${person.lastName}">Lennon</td>
             <td th:text="${person.email}">jl@beatles.com</td>
+            <td>[[${person.enabled}]]</td>
+            <td>
+                <a th:href="@{'/persons/delete/' + ${person.id}}">Delete</a> /
+                <a th:href="@{'/persons/edit/' + ${person.id}}">Edit</a>
+            </td>
         </tr>
     </th:block>
     </tbody>
